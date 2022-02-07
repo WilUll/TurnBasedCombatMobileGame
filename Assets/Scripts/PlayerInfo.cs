@@ -25,7 +25,6 @@ public class PlayerInfo : MonoBehaviour
         PlayerSaveData loadedData = JsonUtility.FromJson<PlayerSaveData>(jsonString);
         Debug.Log("Loaded data");
 
-        Debug.Log(loadedData.Name);
 
         Name = loadedData.Name;
         ColorHUE = loadedData.ColorHUE;
