@@ -35,3 +35,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/StreamingAssets/google-services.json
+Assets/StreamingAssets/google-services-desktop.json
