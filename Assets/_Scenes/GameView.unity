@@ -17600,6 +17600,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7506874335773248675, guid: 8875752ca8bf87746bb9b561ddb049ea, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7880001064186140403, guid: 8875752ca8bf87746bb9b561ddb049ea, type: 3}
       propertyPath: fade
       value: 
@@ -17607,6 +17611,10 @@ PrefabInstance:
     - target: {fileID: 8328962092914068544, guid: 8875752ca8bf87746bb9b561ddb049ea, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041954401740606884, guid: 8875752ca8bf87746bb9b561ddb049ea, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8875752ca8bf87746bb9b561ddb049ea, type: 3}
