@@ -18,5 +18,9 @@ public class OpponentInfo : MonoBehaviour
             SaveManager.Instance.SaveOpponent(gameObject);
         }
     }
+    public void TakeDamage(float damageToDeal)
+    {
+        currentHealth -= damageToDeal;
+    }
 
 }

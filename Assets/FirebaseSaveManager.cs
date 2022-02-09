@@ -63,6 +63,7 @@ public class FirebaseSaveManager : MonoBehaviour
 
 		Debug.Log("Trying to write data...");
 		var db = FirebaseDatabase.DefaultInstance;
+
 		var task = db.RootReference.Child("users").Child(userID).SetValueAsync(jsonString).ContinueWith(task =>
 		{
 			if (task.Exception != null)

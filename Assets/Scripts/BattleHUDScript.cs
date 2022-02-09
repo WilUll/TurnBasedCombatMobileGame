@@ -6,31 +6,33 @@ using TMPro;
 
 public class BattleHUDScript : MonoBehaviour
 {
-    public OpponentInfo oppInfo;
-    public PlayerInfo playerInfo;
+    public GameObject player;
 
     public TMP_Text playerName;
     public TMP_Text level;
     public Slider hpSlider;
 
+
     private void Start()
     {
-        StartCoroutine(StartDelay());
+        StartCoroutine(Setup());
     }
 
-    IEnumerator StartDelay()
+    IEnumerator Setup()
     {
         yield return new WaitForSeconds(0.2f);
-        if (playerInfo == null)
+        if (player.GetComponent<PlayerInfo>() == null)
         {
+            OpponentInfo oppInfo = player.GetComponent<OpponentInfo>();
             playerName.text = oppInfo.Name;
             level.text = oppInfo.level.ToString();
             hpSlider.maxValue = oppInfo.maxHealth;
             hpSlider.value = oppInfo.currentHealth;
 
         }
-        else if (playerInfo != null)
+        else if (player.GetComponent<PlayerInfo>() != null)
         {
+            PlayerInfo playerInfo = player.GetComponent<PlayerInfo>();
             playerName.text = playerInfo.Name;
             level.text = playerInfo.level.ToString();
             hpSlider.maxValue = playerInfo.maxHealth;
@@ -39,21 +41,19 @@ public class BattleHUDScript : MonoBehaviour
         }
     }
 
-    public void TakeDamage()
+    public void UpdateHUD()
     {
-        if (playerInfo == null)
+        if (player.GetComponent<PlayerInfo>() == null)
         {
-            playerName.text = oppInfo.Name;
-            level.text = oppInfo.level.ToString();
+            OpponentInfo oppInfo = player.GetComponent<OpponentInfo>();
             hpSlider.value = oppInfo.currentHealth;
 
         }
-        else if (playerInfo != null)
+        else if (player.GetComponent<PlayerInfo>() != null)
         {
-            playerName.text = playerInfo.Name;
-            level.text = playerInfo.level.ToString();
+            PlayerInfo playerInfo = player.GetComponent<PlayerInfo>();
             hpSlider.value = playerInfo.currentHealth;
-
         }
     }
+
 }

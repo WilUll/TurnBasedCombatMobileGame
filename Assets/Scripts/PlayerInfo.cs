@@ -49,4 +49,9 @@ public class PlayerInfo : MonoBehaviour
         currentHealth = maxHealth;
         damage = 10 + (level * 1);
     }
+
+    public void TakeDamage(float damageToDeal)
+    {
+        currentHealth -= damageToDeal;
+    }
 }
