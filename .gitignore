@@ -3,6 +3,7 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Ll]ogs/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
@@ -37,3 +38,5 @@ sysinfo.txt
 *.unitypackage
 Assets/StreamingAssets/google-services.json
 Assets/StreamingAssets/google-services-desktop.json
+*.log
+*.log

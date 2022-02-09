@@ -34,22 +34,6 @@ public class BattleSystem : MonoBehaviour
     {
         Player1Turn();
         //TODO: ASSIGN PLAYER AS p1 or p2
-
-
-
-
-        //int randomizeWhoStarts = Random.Range(0, 2);
-
-        //if (randomizeWhoStarts == 0)
-        //{
-        //    state = BattleState.PLAYER1TURN;
-        //    Player1Turn();
-        //}
-        //else
-        //{
-        //    state = BattleState.PLAYER2TURN;
-        //    Player2Turn();
-        //}
     }
 
     private void Player1Turn()
