@@ -16995,12 +16995,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   player1AttackChoice: 0
-  player1Damage: 0
   player2AttackChoice: 0
-  player2Damage: 0
   attackButtonsHUD: {fileID: 2012181849}
-  player1: {fileID: 4901283278643083340}
-  player2: {fileID: 5543112534670880405}
+  player1Script: {fileID: 4901283278643083348}
+  player2Script: {fileID: 5543112534670880410}
   player1HUD: {fileID: 2124977901}
   player2HUD: {fileID: 865336850}
 --- !u!114 &1079406533

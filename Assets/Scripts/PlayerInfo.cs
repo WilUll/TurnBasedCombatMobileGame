@@ -14,9 +14,13 @@ public class PlayerInfo : MonoBehaviour
     public float currentHealth;
     public float damage;
 
+    public delegate void DamageTaken();
+    public static event DamageTaken OnDamage;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+
+
         if (Name == "")
         {
             Name = "AI";
@@ -41,5 +45,8 @@ public class PlayerInfo : MonoBehaviour
     public void TakeDamage(float damageToDeal)
     {
         currentHealth -= damageToDeal;
+
+        if (OnDamage != null)
+            OnDamage();
     }
 }
