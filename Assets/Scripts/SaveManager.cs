@@ -1,5 +1,6 @@
 using Firebase.Database;
 using Firebase.Extensions;
+using System;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -49,5 +50,27 @@ public class SaveManager : MonoBehaviour
 
             onSaveDelegate?.Invoke();
         });
+    }
+
+    //This load gives one callback for each result in the database.
+    public void LoadDataMultiple(string path, OnLoadedDelegate onLoadedDelegate)
+    {
+        db.RootReference.Child(path).GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            string jsonData = task.Result.GetRawJsonValue();
+
+            if (task.Exception != null)
+                Debug.LogWarning(task.Exception);
+
+            foreach (var item in task.Result.Children)
+            {
+                onLoadedDelegate(item.GetRawJsonValue());
+            }
+        });
+    }
+
+    public string GetKey(string path)
+    {
+        return db.RootReference.Child(path).Push().Key;
     }
 }
