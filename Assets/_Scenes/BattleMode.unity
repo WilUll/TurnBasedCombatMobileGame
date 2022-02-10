@@ -19195,8 +19195,8 @@ GameObject:
   - component: {fileID: 5543112534670880406}
   - component: {fileID: 5543112534670880408}
   - component: {fileID: 5543112534670880411}
-  - component: {fileID: 5543112534670880407}
   - component: {fileID: 5543112534670880410}
+  - component: {fileID: 5543112534670880407}
   - component: {fileID: 5543112534670880412}
   m_Layer: 0
   m_Name: EnemyBattleView
@@ -19318,12 +19318,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5543112534670880405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3484cff0501334849a87b31dc00d2cb2, type: 3}
+  m_Script: {fileID: 11500000, guid: a72917d18b580104486ddd947dfe1591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
   ColorHUE: 0
   level: 0
+  Exp: 0
   maxHealth: 0
   currentHealth: 0
   damage: 0

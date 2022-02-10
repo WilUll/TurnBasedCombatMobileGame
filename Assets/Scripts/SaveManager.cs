@@ -1,123 +1,53 @@
-using System;
+using Firebase.Database;
+using Firebase.Extensions;
 using UnityEngine;
-
-[Serializable]
-public class PlayerSaveData
-{
-    public string Name;
-    public float ColorHUE;
-    public float Exp;
-}
-
-public class OpponentSaveData
-{
-    public string Name;
-    public float ColorHUE;
-    public int level;
-}
-
 
 public class SaveManager : MonoBehaviour
 {
-    public static SaveManager Instance { get; private set; }
+    private static SaveManager _instance;
+    public static SaveManager Instance { get { return _instance; } }
 
-    public CharacterCreator charInfo;
+    public delegate void OnLoadedDelegate(string jsonData);
+    public delegate void OnSaveDelegate();
 
-    void Awake()
+    FirebaseDatabase db;
+
+    private void Awake()
     {
-        if (Instance == null)
+        if (_instance == null)
         {
-            Instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
+
+        db = FirebaseDatabase.DefaultInstance;
     }
 
-    public void Save()
+    //loads the data at "path" then returns json result to the delegate/callback function
+    public void LoadData(string path, OnLoadedDelegate onLoadedDelegate)
     {
-        PlayerSaveData saveData = new PlayerSaveData();
-
-
-        saveData.Name = charInfo.inputField.text;
-        saveData.ColorHUE = charInfo.colorSlider.value;
-
-        string jsonString = JsonUtility.ToJson(saveData);
-
-        PlayerPrefs.SetString("PlayerSaveData", jsonString);
-
-        Debug.Log(jsonString);
-    }
-
-    public void PlayerSave(GameObject player)
-    {
-        PlayerSaveData saveData = new PlayerSaveData();
-        PlayerInfo playInfo = player.GetComponent<PlayerInfo>();
-
-        saveData.Name = playInfo.Name;
-        saveData.ColorHUE = playInfo.ColorHUE;
-        saveData.Exp = playInfo.Exp;
-
-        string jsonString = JsonUtility.ToJson(saveData);
-
-        PlayerPrefs.SetString("PlayerSaveData", jsonString);
-    }
-
-    public void SaveOpponent(GameObject opponent)
-    {
-        OpponentSaveData opponentSaveData = new OpponentSaveData();
-        OpponentInfo oppInfo = opponent.GetComponent<OpponentInfo>();
-
-        opponentSaveData.Name = oppInfo.name;
-        opponentSaveData.ColorHUE = oppInfo.ColorHUE;
-        opponentSaveData.level = oppInfo.level;
-
-        string jsonString = JsonUtility.ToJson(opponentSaveData);
-
-        PlayerPrefs.SetString("OpponentSaveData", jsonString);
-
-        Debug.Log(jsonString);
-    }
-
-    public void Load()
-    {
-        //Get the saved jsonString
-        string jsonString = PlayerPrefs.GetString("PlayerSaveData");
-
-        //Convert the data to a object
-
-        try
+        db.RootReference.Child(path).GetValueAsync().ContinueWithOnMainThread(task =>
         {
-            PlayerSaveData loadedData = JsonUtility.FromJson<PlayerSaveData>(jsonString);
-            Debug.Log("Loaded data");
+            if (task.Exception != null)
+                Debug.LogWarning(task.Exception);
 
-        }
-        catch (Exception)
-        {
-            Debug.Log("Data Failed To Load");
-            throw;
-        }
+            onLoadedDelegate(task.Result.GetRawJsonValue());
+        });
     }
 
-    public void OpponentLoad()
+    //Save the data at the given path
+    public void SaveData(string path, string data, OnSaveDelegate onSaveDelegate = null)
     {
-        //Get the saved jsonString
-        string jsonString = PlayerPrefs.GetString("OpponentSaveData");
-
-        //Convert the data to a object
-
-        try
+        db.RootReference.Child(path).SetRawJsonValueAsync(data).ContinueWithOnMainThread(task =>
         {
-            OpponentSaveData loadedData = JsonUtility.FromJson<OpponentSaveData>(jsonString);
-            Debug.Log("Loaded data");
+            if (task.Exception != null)
+                Debug.LogWarning(task.Exception);
 
-        }
-        catch (Exception)
-        {
-            Debug.Log("Data Failed To Load");
-            throw;
-        }
+            onSaveDelegate?.Invoke();
+        });
     }
 }

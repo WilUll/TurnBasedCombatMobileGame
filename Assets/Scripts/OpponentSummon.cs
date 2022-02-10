@@ -12,10 +12,6 @@ public class OpponentSummon : MonoBehaviour
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>();
         opponentInfoScript = gameObject.GetComponent<OpponentInfo>();
 
-        opponentInfoScript.level = playerScript.level + Random.Range(-5, 5);
-        if (opponentInfoScript.level <= 0)
-        {
-            opponentInfoScript.level = 1;
-        }
+
     }
 }

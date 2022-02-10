@@ -20,9 +20,6 @@ public class FirebaseSaveManager : MonoBehaviour
 
 	private void Update()
 	{
-
-		if (Input.GetKeyDown(KeyCode.D))
-			SavePlayer(auth.CurrentUser.UserId);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 			SignOut();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class PlayerInfo : MonoBehaviour
 {
     public string Name;
@@ -16,23 +17,10 @@ public class PlayerInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Get the saved jsonString
-        string jsonString = PlayerPrefs.GetString("PlayerSaveData");
-
-        //Convert the data to a object
-
-
-        PlayerSaveData loadedData = JsonUtility.FromJson<PlayerSaveData>(jsonString);
-        Debug.Log("Loaded data");
-
-
-        Name = loadedData.Name;
-        ColorHUE = loadedData.ColorHUE;
-        Exp = loadedData.Exp;
-
-        gameObject.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(ColorHUE, 0.85f, 0.85f);
-        Debug.Log("start");
-
+        if (Name == "")
+        {
+            Name = "AI";
+        }
         CalculateVariables();
     }
 

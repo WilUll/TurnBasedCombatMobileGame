@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class OpponentInfoBattleMode : MonoBehaviour
 {
-    OpponentInfo opponentInfoScript;
+    PlayerInfo userPlayerScript;
+    PlayerInfo aiPlayerScript;
+
     // Start is called before the first frame update
     void Start()
     {
-        opponentInfoScript = GetComponent<OpponentInfo>();
-        string jsonString = PlayerPrefs.GetString("OpponentSaveData");
-        OpponentSaveData loadedData = JsonUtility.FromJson<OpponentSaveData>(jsonString);
-        opponentInfoScript.Name = loadedData.Name;
-        opponentInfoScript.ColorHUE = loadedData.ColorHUE;
-        opponentInfoScript.level = loadedData.level;
+        userPlayerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>();
+        aiPlayerScript = GetComponent<PlayerInfo>();
+        aiPlayerScript.level = userPlayerScript.level + Random.Range(-5, 5);
+        if (aiPlayerScript.level <= 0)
+        {
+            aiPlayerScript.level = 1;
+        }
         CalculateVariables();
     }
 
     public void CalculateVariables()
     {
-        opponentInfoScript.maxHealth = 100 + (opponentInfoScript.level * 5);
-        opponentInfoScript.currentHealth = opponentInfoScript.maxHealth;
-        opponentInfoScript.damage = 10 + (opponentInfoScript.level * 1);
+        aiPlayerScript.maxHealth = 100 + (aiPlayerScript.level * 5);
+        aiPlayerScript.currentHealth = aiPlayerScript.maxHealth;
+        aiPlayerScript.damage = 10 + (aiPlayerScript.level * 1);
     }
 }

@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "emulator-5554",
+    "m_SelectedDeviceId": "ZY326PQLB3",
     "m_SelectedPackage": {
-        "deviceId": "emulator-5554",
-        "name": "com.DefaultCompany.com.unity.template.mobile2D",
-        "processId": 2824,
+        "deviceId": "ZY326PQLB3",
+        "name": "com.WilliamUllholm.MobileGame",
+        "processId": 17815,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -12,6 +12,12 @@
             "deviceId": "emulator-5554",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
             "processId": 2824,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY326PQLB3",
+            "name": "com.WilliamUllholm.MobileGame",
+            "processId": 17815,
             "exited": false
         }
     ],

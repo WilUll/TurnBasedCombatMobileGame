@@ -15,7 +15,7 @@ public class OpponentInfo : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SaveManager.Instance.SaveOpponent(gameObject);
+            
         }
     }
     public void TakeDamage(float damageToDeal)

@@ -9,8 +9,6 @@ public class CollisionDetection : MonoBehaviour
     {
         if (collision.CompareTag("Opponent"))
         {
-            SaveManager.Instance.SaveOpponent(collision.gameObject);
-            gameObject.GetComponent<FadeScreen>().Fade();
             SceneManager.LoadScene("BattleMode");
 
         }
