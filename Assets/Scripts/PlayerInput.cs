@@ -28,16 +28,14 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            SaveData();
-        }
+            PlayerSaveData saveData = new PlayerSaveData();
 
-        void SaveData()
-        {
-            PlayerSaveData data = new PlayerSaveData();
+            //Convert saveData object to JSON
+            string jsonString = JsonUtility.ToJson(saveData);
+
             string userPath = "users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId;
-            data.Level = 9899;
-            SaveManager.Instance.SaveData(userPath, JsonUtility.ToJson(data));
 
+            SaveManager.Instance.SaveData(userPath, jsonString);
         }
     }
 }
