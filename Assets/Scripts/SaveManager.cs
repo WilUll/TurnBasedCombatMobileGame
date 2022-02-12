@@ -1,6 +1,6 @@
 using Firebase.Database;
 using Firebase.Extensions;
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -8,7 +8,8 @@ public class SaveManager : MonoBehaviour
     private static SaveManager _instance;
     public static SaveManager Instance { get { return _instance; } }
 
-    public delegate void OnLoadedDelegate(string jsonData);
+    public delegate void OnLoadedDelegateMultiple(List<string> jsonData);
+    public delegate void OnLoadedDelegate(string json);
     public delegate void OnSaveDelegate();
 
     FirebaseDatabase db;
@@ -40,6 +41,34 @@ public class SaveManager : MonoBehaviour
         });
     }
 
+    //public void LoadDataQuery(string path, OnLoadedDelegate onLoadedDelegate)
+    //{
+    //    db.RootReference.Child(path).OrderByChild("numberOfPlayers").GetValueAsync().ContinueWithOnMainThread(task =>
+    //    {
+    //        if (task.Exception != null)
+    //            Debug.LogWarning(task.Exception);
+
+    //        onLoadedDelegate(task.Result.GetRawJsonValue());
+    //    });
+    //}
+
+
+    //This loads multiple data and returns it as a string list with json.
+    public void LoadData(string path, OnLoadedDelegateMultiple onLoadedDelegates)
+    {
+        db.RootReference.Child(path).GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            List<string> loadedJson = new List<string>();
+
+            foreach (var item in task.Result.Children)
+            {
+                loadedJson.Add(item.GetRawJsonValue());
+            }
+
+            onLoadedDelegates(loadedJson);
+        });
+    }
+
     //Save the data at the given path
     public void SaveData(string path, string data, OnSaveDelegate onSaveDelegate = null)
     {
@@ -49,23 +78,6 @@ public class SaveManager : MonoBehaviour
                 Debug.LogWarning(task.Exception);
 
             onSaveDelegate?.Invoke();
-        });
-    }
-
-    //This load gives one callback for each result in the database.
-    public void LoadDataMultiple(string path, OnLoadedDelegate onLoadedDelegate)
-    {
-        db.RootReference.Child(path).GetValueAsync().ContinueWithOnMainThread(task =>
-        {
-            string jsonData = task.Result.GetRawJsonValue();
-
-            if (task.Exception != null)
-                Debug.LogWarning(task.Exception);
-
-            foreach (var item in task.Result.Children)
-            {
-                onLoadedDelegate(item.GetRawJsonValue());
-            }
         });
     }
 

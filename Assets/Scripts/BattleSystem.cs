@@ -115,7 +115,7 @@ public class BattleSystem : MonoBehaviour
     private void EndCard()
     {
         state = BattleState.END;
-
+        SceneManager.LoadScene("GameView");
     }
 
 

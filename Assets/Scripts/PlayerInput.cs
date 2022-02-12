@@ -1,3 +1,4 @@
+using Firebase.Auth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,11 @@ public class PlayerInput : MonoBehaviour
 {
     public Tilemap worldTilemap;
     Movement movementScript;
+    PlayerInfo playerScript;
     // Start is called before the first frame update
     void Start()
     {
+        playerScript = GetComponent<PlayerInfo>();
         movementScript = gameObject.GetComponent<Movement>();
     }
 
@@ -21,6 +24,20 @@ public class PlayerInput : MonoBehaviour
             Vector3Int cellCoords = worldTilemap.WorldToCell(clickedPos);
             Vector3 cursorPos = worldTilemap.GetCellCenterWorld(cellCoords);
             movementScript.Move(cursorPos);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SaveData();
+        }
+
+        void SaveData()
+        {
+            PlayerSaveData data = new PlayerSaveData();
+            string userPath = "users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+            data.Level = 9899;
+            SaveManager.Instance.SaveData(userPath, JsonUtility.ToJson(data));
+
         }
     }
 }
