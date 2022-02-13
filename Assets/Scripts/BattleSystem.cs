@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public enum BattleState { START, PLAYER1TURN, PLAYER2TURN, END }
+public enum BattleState { START, PLAYER1TURN, PLAYER2TURN, LOST, WON }
 
 public class BattleSystem : MonoBehaviour
 {
@@ -76,6 +75,8 @@ public class BattleSystem : MonoBehaviour
                 player2Script.TakeDamage(10);
                 if (player2Script.currentHealth <= 0)
                 {
+                    state = BattleState.LOST;
+
                     EndCard();
                 }
             }
@@ -84,6 +85,8 @@ public class BattleSystem : MonoBehaviour
                 player1Script.TakeDamage(10);
                 if (player1Script.currentHealth <= 0)
                 {
+                    state = BattleState.WON;
+
                     EndCard();
                 }
             }
@@ -114,8 +117,7 @@ public class BattleSystem : MonoBehaviour
 
     private void EndCard()
     {
-        state = BattleState.END;
-        SceneManager.LoadScene("GameView");
+        
     }
 
 

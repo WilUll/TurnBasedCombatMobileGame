@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using Firebase.Auth;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -19,24 +19,28 @@ public class PlayerInfo : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (gameObject.tag != "Player") return;
+        string userPath = "users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+
+        SaveManager.Instance.LoadData(userPath, SetPlayerValues);
 
 
-        if (Name == "")
-        {
-            Name = "AI";
-        }
+
         CalculateVariables();
+    }
+
+    void SetPlayerValues(string json)
+    {
+        PlayerSaveData data = JsonUtility.FromJson<PlayerSaveData>(json);
+
+        Name = data.Name;
+        ColorHUE = data.ColorHUE;
+        level = data.Level;
+        Exp = data.Exp;
     }
 
     void CalculateVariables()
     {
-        float expVar = Mathf.FloorToInt(Exp / 100);
-        if (expVar == 0)
-        {
-            expVar = 1;
-        }
-        Debug.Log("start2");
-        level = (int)expVar;
         maxHealth = 100 + (level * 5);
         currentHealth = maxHealth;
         damage = 10 + (level * 1);

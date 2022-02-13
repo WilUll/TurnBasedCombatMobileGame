@@ -9,9 +9,11 @@ public class CharacterCreator : MonoBehaviour
     public Slider colorSlider;
     public TMP_InputField inputField;
 
-
+    PlayerSaveData data;
+    string userPath;
     void Start()
     {
+        inputField.characterLimit = 20;
         colorImage.color = Color.HSVToRGB(colorSlider.value, 0.85f, 0.85f);
     }
 
@@ -20,17 +22,34 @@ public class CharacterCreator : MonoBehaviour
         colorImage.color = Color.HSVToRGB(colorSlider.value, 0.85f, 0.85f);
     }
 
-    public void SaveData()
+    public void SaveButton()
     {
-        PlayerSaveData saveData = new PlayerSaveData();
-        saveData.Name = inputField.text;
-        saveData.ColorHUE = colorSlider.value;
+        if (inputField.text == "") return;
 
-        //Convert saveData object to JSON
-        string jsonString = JsonUtility.ToJson(saveData);
+        userPath = "users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId;
 
-        string userPath = "users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        SaveManager.Instance.LoadData(userPath, OnLoaded);
+    }
 
-        SaveManager.Instance.SaveData(userPath, JsonUtility.ToJson(jsonString));
+    void OnLoaded(string json)
+    {
+        if (json != null)
+        {
+            data = JsonUtility.FromJson<PlayerSaveData>(json);
+        }
+        else
+        {
+            data = new PlayerSaveData();
+        }
+        SavePlayer(data);
+    }
+
+    void SavePlayer(PlayerSaveData dataToSave)
+    {
+        dataToSave.ColorHUE = colorSlider.value;
+        dataToSave.Name = inputField.text;
+
+
+        SaveManager.Instance.SaveData(userPath, JsonUtility.ToJson(dataToSave));
     }
 }

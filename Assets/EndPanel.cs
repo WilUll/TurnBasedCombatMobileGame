@@ -9,16 +9,44 @@ public class EndPanel : MonoBehaviour
     public Slider ExpBar;
     public TextMeshProUGUI ExpText;
 
+    public PlayerInfo playerScript;
+
+    bool startCount = false;
+    int expAdded;
     // Start is called before the first frame update
     void Start()
     {
-        //TODO: SLIDER MAX = Player level + 1 * 100;
-        ExpText.text = "0 / " + ExpBar.maxValue; 
+        StartCoroutine(Setup());
+
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Setup()
     {
-        
+        yield return new WaitForSeconds(0.2f);
+        Debug.Log(playerScript.level);
+        ExpBar.maxValue = (playerScript.level + 1) * 100;
+        ExpBar.value = playerScript.Exp;
+        //TODO: SLIDER MAX = Player level + 1 * 100;
+        ExpText.text = ExpBar.value + " / " + ExpBar.maxValue;
+    }
+
+    private void Update()
+    {
+        if (startCount)
+        {
+            if (expAdded >= 50)
+            {
+                startCount = false;
+                return;
+            }
+            ExpBar.value ++;
+            ExpText.text = ExpBar.value + " / " + ExpBar.maxValue;
+            expAdded++;
+        }
+    }
+
+    public void StartCounting()
+    {
+        startCount = true;
     }
 }

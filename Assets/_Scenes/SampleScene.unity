@@ -832,21 +832,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1758823751}
+      - m_Target: {fileID: 173740392}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 173740394}
         m_TargetAssemblyTypeName: CharacterCreator, Assembly-CSharp
-        m_MethodName: SaveData
+        m_MethodName: SaveButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4283,11 +4283,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &1758823751 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 255160080479013375, guid: b44615a1d525b2a419767bdcc94af2b9, type: 3}
-  m_PrefabInstance: {fileID: 255160081088218272}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1765736463
 GameObject:
   m_ObjectHideFlags: 0

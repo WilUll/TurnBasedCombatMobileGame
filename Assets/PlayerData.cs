@@ -24,12 +24,11 @@ public class PlayerData : MonoBehaviour
 		if (json != null)
 		{
 			data = JsonUtility.FromJson<PlayerSaveData>(json);
-			Debug.Log(JsonUtility.ToJson(data));
 		}
 		else
 		{
 			data = new PlayerSaveData();
-			Debug.Log(JsonUtility.ToJson(data));
+			data.Level = 1;
 			SaveData();
 		}
 
