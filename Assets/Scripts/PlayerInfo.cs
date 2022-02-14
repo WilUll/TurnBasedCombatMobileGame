@@ -13,9 +13,11 @@ public class PlayerInfo : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
     public float damage;
+    public int WinStreak;
 
     public delegate void DamageTaken();
     public static event DamageTaken OnDamage;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,7 +25,6 @@ public class PlayerInfo : MonoBehaviour
         string userPath = "users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId;
 
         SaveManager.Instance.LoadData(userPath, SetPlayerValues);
-
 
 
         CalculateVariables();
@@ -37,6 +38,7 @@ public class PlayerInfo : MonoBehaviour
         ColorHUE = data.ColorHUE;
         level = data.Level;
         Exp = data.Exp;
+        WinStreak = data.WinStreak;
     }
 
     void CalculateVariables()
@@ -53,4 +55,19 @@ public class PlayerInfo : MonoBehaviour
         if (OnDamage != null)
             OnDamage();
     }
+
+
+
+    //Level calculated by (level + 1) * 100
+    public void AddXP(float xp)
+    {
+        Exp += xp;
+        if (Exp >= ((level + 1) * 100))
+        {
+            Exp -= ((level + 1) * 100);
+            level++;
+        }
+    }
+
+
 }

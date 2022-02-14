@@ -25,17 +25,5 @@ public class PlayerInput : MonoBehaviour
             Vector3 cursorPos = worldTilemap.GetCellCenterWorld(cellCoords);
             movementScript.Move(cursorPos);
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            PlayerSaveData saveData = new PlayerSaveData();
-
-            //Convert saveData object to JSON
-            string jsonString = JsonUtility.ToJson(saveData);
-
-            string userPath = "users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId;
-
-            SaveManager.Instance.SaveData(userPath, jsonString);
-        }
     }
 }

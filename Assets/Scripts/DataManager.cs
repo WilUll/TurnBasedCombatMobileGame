@@ -9,11 +9,11 @@ public class PlayerSaveData
     public float ColorHUE;
     public float Exp;
     public int Level;
+    public int WinStreak;
 
     //Not Active
     public int Wins;
     public int Losses;
-    public int WinStreak;
 }
 
 [Serializable]
@@ -22,4 +22,5 @@ public class GameInfo
     public string displayName;
     public string gameID;
     public List<PlayerSaveData> players;
+    public string userIDTurn;
 }

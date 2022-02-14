@@ -117,5 +117,8 @@ public class FirebaseRegisterAccount : MonoBehaviour
 	{
 		//Activate the play button once we have logged in
 		playButton.interactable = true;
+
+
+
 	}
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BattleState { START, PLAYER1TURN, PLAYER2TURN, LOST, WON }
+public enum BattleState { START, PLAYER1TURN, PLAYER2TURN, PLAYER1WON, PLAYER2WON }
 
 public class BattleSystem : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class BattleSystem : MonoBehaviour
 
     public BattleHUDScript player1HUD;
     public BattleHUDScript player2HUD;
+
+    public GameObject endPanel;
     void Start()
     {
         state = BattleState.START;
@@ -75,7 +77,7 @@ public class BattleSystem : MonoBehaviour
                 player2Script.TakeDamage(10);
                 if (player2Script.currentHealth <= 0)
                 {
-                    state = BattleState.LOST;
+                    state = BattleState.PLAYER1WON;
 
                     EndCard();
                 }
@@ -85,7 +87,7 @@ public class BattleSystem : MonoBehaviour
                 player1Script.TakeDamage(10);
                 if (player1Script.currentHealth <= 0)
                 {
-                    state = BattleState.WON;
+                    state = BattleState.PLAYER2WON;
 
                     EndCard();
                 }
@@ -117,7 +119,15 @@ public class BattleSystem : MonoBehaviour
 
     private void EndCard()
     {
-        
+        if (state == BattleState.PLAYER1WON)
+        {
+            player1Script.WinStreak++;
+        }
+        else
+        {
+            player1Script.WinStreak = 0;
+        }
+        endPanel.SetActive(true);
     }
 
 

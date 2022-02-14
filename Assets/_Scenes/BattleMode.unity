@@ -15616,7 +15616,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 320667742}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1603986689}
+        m_TargetAssemblyTypeName: EndPanel, Assembly-CSharp
+        m_MethodName: LoadPrevScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &320667742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17256,6 +17268,7 @@ MonoBehaviour:
   player2Script: {fileID: 5543112534670880410}
   player1HUD: {fileID: 2124977901}
   player2HUD: {fileID: 865336850}
+  endPanel: {fileID: 1603986687}
 --- !u!114 &1079406533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17279,8 +17292,9 @@ GameObject:
   - component: {fileID: 1105178123}
   - component: {fileID: 1105178125}
   - component: {fileID: 1105178124}
+  - component: {fileID: 1105178126}
   m_Layer: 0
-  m_Name: PlayerAttackSprite
+  m_Name: EnemyAttackSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17310,7 +17324,7 @@ Animator:
   m_GameObject: {fileID: 1105178122}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: df9154d05df2a9342996fc1aa95b7abe, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5e3685c19ee91574a97ca802a7196758, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -17370,6 +17384,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1105178126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105178122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b0fd9ba81e10049865279ba77e0873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1208542099
 GameObject:
   m_ObjectHideFlags: 0
@@ -17847,6 +17873,7 @@ MonoBehaviour:
   ExpBar: {fileID: 2009190364}
   ExpText: {fileID: 1786664605}
   playerScript: {fileID: 4901283278643083348}
+  xpToAdd: 0
 --- !u!114 &1603986690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18026,6 +18053,7 @@ GameObject:
   - component: {fileID: 1682821411}
   - component: {fileID: 1682821413}
   - component: {fileID: 1682821412}
+  - component: {fileID: 1682821414}
   m_Layer: 0
   m_Name: PlayerAttackSprite
   m_TagString: Untagged
@@ -18117,6 +18145,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1682821414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682821410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b0fd9ba81e10049865279ba77e0873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1701368345
 GameObject:
   m_ObjectHideFlags: 0
@@ -19863,6 +19903,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   damage: 0
+  WinStreak: 0
 --- !u!50 &4901283278643083349
 Rigidbody2D:
   serializedVersion: 4
@@ -20142,6 +20183,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   damage: 0
+  WinStreak: 0
 --- !u!50 &5543112534670880411
 Rigidbody2D:
   serializedVersion: 4

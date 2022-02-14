@@ -8,4 +8,9 @@ public class LoadNextScene : MonoBehaviour
     {
         SceneManager.LoadScene("GameView");
     }
+    
+    public void LoadOnlineScene()
+    {
+        SceneManager.LoadScene("OnlineBattle");
+    }
 }
