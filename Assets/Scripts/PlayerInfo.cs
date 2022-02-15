@@ -22,23 +22,18 @@ public class PlayerInfo : MonoBehaviour
     void Awake()
     {
         if (gameObject.tag != "Player") return;
-        string userPath = "users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId;
-
-        SaveManager.Instance.LoadData(userPath, SetPlayerValues);
 
 
         CalculateVariables();
     }
 
-    void SetPlayerValues(string json)
+    void SetPlayerValues()
     {
-        PlayerSaveData data = JsonUtility.FromJson<PlayerSaveData>(json);
-
-        Name = data.Name;
-        ColorHUE = data.ColorHUE;
-        level = data.Level;
-        Exp = data.Exp;
-        WinStreak = data.WinStreak;
+        Name = PlayerData.data.Name;
+        ColorHUE = PlayerData.data.ColorHUE;
+        level = PlayerData.data.Level;
+        Exp = PlayerData.data.Exp;
+        WinStreak = PlayerData.data.WinStreak;
     }
 
     void CalculateVariables()
@@ -52,8 +47,7 @@ public class PlayerInfo : MonoBehaviour
     {
         currentHealth -= damageToDeal;
 
-        if (OnDamage != null)
-            OnDamage();
+        OnDamage?.Invoke();
     }
 
 

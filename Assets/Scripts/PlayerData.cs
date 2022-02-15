@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
 	public static PlayerSaveData data;
-	static string userPath;
+	public static string userPath;
 
 
 	private void Start()
@@ -38,5 +38,10 @@ public class PlayerData : MonoBehaviour
 	public static void SaveData()
 	{
 		SaveManager.Instance.SaveData(userPath, JsonUtility.ToJson(data));
+	}
+
+	public static void UpdateSaveData(PlayerSaveData updatedData)
+    {
+		SaveManager.Instance.SaveData(userPath, JsonUtility.ToJson(updatedData));
 	}
 }

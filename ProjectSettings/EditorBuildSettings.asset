@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/BattleMode.unity
     guid: 732dd59f42a87694ebca9cc0d1fcaefe
+  - enabled: 1
+    path: Assets/_Scenes/OnlineTest.unity
+    guid: 85aecb723184591489dbb798c3a1d9d7
   m_configObjects: {}

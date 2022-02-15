@@ -2302,9 +2302,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 790677430}
-        m_TargetAssemblyTypeName: LoadNextScene, Assembly-CSharp
-        m_MethodName: LoadGameScene
+      - m_Target: {fileID: 1374498746}
+        m_TargetAssemblyTypeName: FirebaseMatchmaking, Assembly-CSharp
+        m_MethodName: LookForAGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3494,6 +3494,7 @@ GameObject:
   - component: {fileID: 1374498744}
   - component: {fileID: 1374498745}
   - component: {fileID: 1374498743}
+  - component: {fileID: 1374498746}
   m_Layer: 0
   m_Name: Firebase
   m_TagString: Untagged
@@ -3545,6 +3546,18 @@ MonoBehaviour:
   registerButton: {fileID: 1478230805}
   username: {fileID: 1385721763}
   password: {fileID: 7663095}
+--- !u!114 &1374498746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374498742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac655e72919fec541a94a06349be85a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1385721761
 GameObject:
   m_ObjectHideFlags: 0

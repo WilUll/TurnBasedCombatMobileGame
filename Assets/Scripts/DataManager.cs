@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[SerializeField]
+[Serializable]
 public class PlayerSaveData
 {
     public string Name;
@@ -10,6 +10,7 @@ public class PlayerSaveData
     public float Exp;
     public int Level;
     public int WinStreak;
+    public string activeGameID;
 
     //Not Active
     public int Wins;
@@ -19,8 +20,10 @@ public class PlayerSaveData
 [Serializable]
 public class GameInfo
 {
-    public string displayName;
     public string gameID;
-    public List<PlayerSaveData> players;
+    public bool isFull;
     public string userIDTurn;
+    public List<PlayerSaveData> players;
+    public string Player1ID;
+    public string Player2ID;
 }

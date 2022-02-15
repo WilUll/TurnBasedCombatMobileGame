@@ -26,9 +26,8 @@ public class CharacterCreator : MonoBehaviour
     {
         if (inputField.text == "") return;
 
-        userPath = "users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId;
 
-        SaveManager.Instance.LoadData(userPath, OnLoaded);
+        SaveManager.Instance.LoadData(PlayerData.userPath, OnLoaded);
     }
 
     void OnLoaded(string json)
@@ -49,7 +48,6 @@ public class CharacterCreator : MonoBehaviour
         dataToSave.ColorHUE = colorSlider.value;
         dataToSave.Name = inputField.text;
 
-
-        SaveManager.Instance.SaveData(userPath, JsonUtility.ToJson(dataToSave));
+        PlayerData.UpdateSaveData(dataToSave);
     }
 }

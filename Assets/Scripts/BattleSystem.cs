@@ -51,7 +51,7 @@ public class BattleSystem : MonoBehaviour
         IEnumerator WaitForAttack()
         {
             yield return new WaitForSeconds(0.5f);
-            AttackButtons(2);
+            AttackButtons(Random.Range(1,4));
         }
     }
 
@@ -74,6 +74,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (attacks.attackRules[player1AttackChoice] == player2AttackChoice)
             {
+                player1Script.gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger(player1AttackChoice.ToString());
                 player2Script.TakeDamage(10);
                 if (player2Script.currentHealth <= 0)
                 {
@@ -84,6 +85,7 @@ public class BattleSystem : MonoBehaviour
             }
             else if (attacks.attackRules[player2AttackChoice] == player1AttackChoice)
             {
+                player2Script.gameObject.gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger(player2AttackChoice.ToString());
                 player1Script.TakeDamage(10);
                 if (player1Script.currentHealth <= 0)
                 {
