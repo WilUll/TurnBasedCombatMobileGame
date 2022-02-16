@@ -1,13 +1,10 @@
+using Firebase.Auth;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FirebaseMatchmaking : MonoBehaviour
 {
-    private void Start()
-    {
-
-    }
     public void LookForAGame()
     {
         SaveManager.Instance.LoadData("games/", OnGamesLoaded);
@@ -15,16 +12,21 @@ public class FirebaseMatchmaking : MonoBehaviour
 
     public void OnGamesLoaded(List<string> gameList)
     {
+        bool createAGame = true;
         foreach (var game in gameList)
         {
             GameInfo gameInfo = JsonUtility.FromJson<GameInfo>(game);
             if (!gameInfo.isFull)
             {
+                createAGame = false;
                 JoinGame(gameInfo);
                 return;
             }
         }
-        CreateGameSession();
+        if (createAGame)
+        {
+            CreateGameSession();
+        }
     }
 
     private void JoinGame(GameInfo gameToJoin)
@@ -32,9 +34,11 @@ public class FirebaseMatchmaking : MonoBehaviour
         PlayerData.data.activeGameID = gameToJoin.gameID;
         gameToJoin.players.Add(PlayerData.data);
         gameToJoin.isFull = true;
+        gameToJoin.Player2ID = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        gameToJoin.userIDTurn = gameToJoin.Player1ID;
 
         string gameDataJson = JsonUtility.ToJson(gameToJoin);
-
+        PlayerData.SaveData();
         SaveManager.Instance.SaveData("games/" + gameToJoin.gameID, gameDataJson);
         SceneManager.LoadScene("OnlineTest");
     }
@@ -51,10 +55,12 @@ public class FirebaseMatchmaking : MonoBehaviour
         PlayerData.data.activeGameID = key;
 
         gameSession.players.Add(PlayerData.data);
+        gameSession.Player1ID = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
 
         string gameData = JsonUtility.ToJson(gameSession);
 
         string path = "games/" + key;
+        PlayerData.SaveData();
         SaveManager.Instance.SaveData(path, gameData);
         SceneManager.LoadScene("OnlineTest");
     }

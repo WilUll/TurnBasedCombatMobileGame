@@ -27,7 +27,11 @@ public class FirebaseOnline : MonoBehaviour
         GameInfo updatedGame = JsonUtility.FromJson<GameInfo>(args.Snapshot.GetRawJsonValue());
 
         //run the game with the new information
-        GameManager gameManager = GetComponent<GameManager>();
-        gameManager.UpdateGame();
+        FindObjectOfType<BattleSystemOnline>().RefreshGame(updatedGame);
+    }
+
+    private void OnDisable()
+    {
+        
     }
 }

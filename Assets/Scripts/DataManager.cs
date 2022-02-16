@@ -26,4 +26,6 @@ public class GameInfo
     public List<PlayerSaveData> players;
     public string Player1ID;
     public string Player2ID;
+    public int Player1Attack;
+    public int Player2Attack;
 }
