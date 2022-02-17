@@ -28,6 +28,7 @@ public class FirebaseOnline : MonoBehaviour
 
         //run the game with the new information
         FindObjectOfType<BattleSystemOnline>().RefreshGame(updatedGame);
+        FindObjectOfType<BattleHUDOnline>().UpdateHud();
     }
 
     private void OnDisable()

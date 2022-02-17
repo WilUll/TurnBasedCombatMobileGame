@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "emulator-5554",
+    "m_SelectedDeviceId": "ZY326PQLB3",
     "m_SelectedPackage": {
-        "deviceId": "emulator-5554",
-        "name": "com.WilliamUllholm.MobileGame",
-        "processId": 2907,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -24,6 +24,18 @@
             "deviceId": "ZY326PQLB3",
             "name": "com.WilliamUllholm.MobileGame",
             "processId": 17815,
+            "exited": true
+        },
+        {
+            "deviceId": "ZY326PQLB3",
+            "name": "com.WilliamUllholm.MobileGame",
+            "processId": 10947,
+            "exited": true
+        },
+        {
+            "deviceId": "ZY326PQLB3",
+            "name": "com.motorola.launcher3",
+            "processId": 2581,
             "exited": false
         }
     ],

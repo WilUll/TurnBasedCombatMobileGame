@@ -9,7 +9,6 @@ public class CharacterCreator : MonoBehaviour
     public Slider colorSlider;
     public TMP_InputField inputField;
 
-    PlayerSaveData data;
     string userPath;
     void Start()
     {
@@ -26,28 +25,15 @@ public class CharacterCreator : MonoBehaviour
     {
         if (inputField.text == "") return;
 
-
-        SaveManager.Instance.LoadData(PlayerData.userPath, OnLoaded);
+        SavePlayer();
     }
 
-    void OnLoaded(string json)
-    {
-        if (json != null)
-        {
-            data = JsonUtility.FromJson<PlayerSaveData>(json);
-        }
-        else
-        {
-            data = new PlayerSaveData();
-        }
-        SavePlayer(data);
-    }
 
-    void SavePlayer(PlayerSaveData dataToSave)
+    void SavePlayer()
     {
-        dataToSave.ColorHUE = colorSlider.value;
-        dataToSave.Name = inputField.text;
+        PlayerData.data.ColorHUE = colorSlider.value;
+        PlayerData.data.Name = inputField.text;
 
-        PlayerData.UpdateSaveData(dataToSave);
+        PlayerData.SaveData();
     }
 }
