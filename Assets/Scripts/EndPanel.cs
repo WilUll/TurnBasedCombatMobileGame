@@ -11,44 +11,48 @@ public class EndPanel : MonoBehaviour
     public GameObject GameCanvas;
     public Slider ExpBar;
     public TextMeshProUGUI ExpText;
+    public TMP_Text levelText;
+    public TMP_Text xpAddText;
 
     public PlayerInfo playerScript;
 
     bool startCount = false;
     int expAdded;
-    string userPath;
     public int xpToAdd;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Setup());
-        userPath = "users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId;
-
     }
 
     IEnumerator Setup()
     {
         yield return new WaitForSeconds(0.2f);
-        Debug.Log(playerScript.level);
-        ExpBar.maxValue = (playerScript.level + 1) * 100;
-        ExpBar.value = playerScript.Exp;
+        levelText.text = PlayerData.data.Level.ToString();
+        ExpBar.maxValue = (PlayerData.data.Level + 1) * 100;
+        ExpBar.value = PlayerData.data.Exp;
         //TODO: SLIDER MAX = Player level + 1 * 100;
         ExpText.text = ExpBar.value + " / " + ExpBar.maxValue;
-        if (playerScript.WinStreak > 0)
+        if (PlayerData.data.WinStreak > 0)
         {
-            playerScript.AddXP(50 * playerScript.WinStreak);
+            xpToAdd = 50 * PlayerData.data.WinStreak;
+            xpAddText.text = "+ " + xpAddText.ToString() + " XP";
+            PlayerData.AddXP(xpToAdd);
         }
         else
         {
-            playerScript.AddXP(25);
+            xpToAdd = 25;
+            PlayerData.AddXP(xpToAdd);
         }
+        SaveManager.Instance.SaveData(PlayerData.userPath, JsonUtility.ToJson(PlayerData.data));
+        StartCounting();
     }
 
     private void Update()
     {
         if (startCount)
         {
-            if (expAdded >= 50)
+            if (expAdded >= xpToAdd)
             {
                 startCount = false;
                 return;
@@ -56,43 +60,17 @@ public class EndPanel : MonoBehaviour
             ExpBar.value++;
             ExpText.text = ExpBar.value + " / " + ExpBar.maxValue;
             expAdded++;
+
+            if (ExpBar.value == ExpBar.maxValue)
+            {
+                ExpBar.value = 0;
+                ExpBar.maxValue = (PlayerData.data.Level + 1) * 100;
+            }
         }
     }
 
     public void StartCounting()
     {
         startCount = true;
-    }
-
-    public void LoadPrevScene()
-    {
-        SaveManager.Instance.LoadData("users/" + FirebaseAuth.DefaultInstance.CurrentUser.UserId, OnLoadData);
-        SceneManager.LoadScene("GameView");
-    }
-
-
-    void OnLoadData(string json)
-    {
-        PlayerSaveData saveData;
-
-        if (json != null)
-        {
-            saveData = JsonUtility.FromJson<PlayerSaveData>(json);
-        }
-        else
-        {
-            return;
-        }
-
-        saveData.Level = playerScript.level;
-        saveData.Exp = playerScript.Exp;
-        saveData.WinStreak = playerScript.WinStreak;
-
-        SaveData(saveData);
-    }
-
-    private void SaveData(PlayerSaveData data)
-    {
-        SaveManager.Instance.SaveData(userPath, JsonUtility.ToJson(data));
     }
 }

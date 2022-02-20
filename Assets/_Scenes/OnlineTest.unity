@@ -51429,6 +51429,7 @@ MonoBehaviour:
   player2Damage: 0
   Player1: {fileID: 4901283278643083340}
   Player2: {fileID: 5543112534670880405}
+  hudScript: {fileID: 1878116497}
 --- !u!4 &1079406531
 Transform:
   m_ObjectHideFlags: 0
@@ -52058,6 +52059,8 @@ MonoBehaviour:
   GameCanvas: {fileID: 2114122814}
   ExpBar: {fileID: 2009190364}
   ExpText: {fileID: 1786664605}
+  levelText: {fileID: 5207617888796990536}
+  xpAddText: {fileID: 557549264}
   playerScript: {fileID: 4901283278643083348}
   xpToAdd: 0
 --- !u!114 &1603986690
@@ -52808,6 +52811,8 @@ MonoBehaviour:
   player2Health: {fileID: 1326964974}
   player1Name: {fileID: 1771319113}
   player2Name: {fileID: 1540753040}
+  panel: {fileID: 1603986687}
+  panelText: {fileID: 1890746159}
   battleSystem: {fileID: 1079406530}
 --- !u!1 &1887908302
 GameObject:
@@ -54261,6 +54266,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 676943bc22fdf814982e977ed4225191, type: 3}
+--- !u!114 &5207617888796990536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1169964579996536736, guid: 676943bc22fdf814982e977ed4225191, type: 3}
+  m_PrefabInstance: {fileID: 5207617888796990535}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5543112534670880405
 GameObject:
   m_ObjectHideFlags: 0

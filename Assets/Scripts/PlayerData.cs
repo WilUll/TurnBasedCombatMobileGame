@@ -44,4 +44,14 @@ public class PlayerData : MonoBehaviour
     {
 		SaveManager.Instance.SaveData(userPath, JsonUtility.ToJson(updatedData));
 	}
+
+	public static void AddXP(float xp)
+	{
+		data.Exp += xp;
+		if (data.Exp >= ((data.Level + 1) * 100))
+		{
+			data.Exp -= ((data.Level + 1) * 100);
+			data.Level++;
+		}
+	}
 }

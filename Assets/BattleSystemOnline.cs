@@ -18,6 +18,9 @@ public class BattleSystemOnline : MonoBehaviour
 
 
     Abilities abilities;
+
+    public BattleHUDOnline hudScript;
+
     private void Start()
     {
         player1MaxHealth = 100;
@@ -106,7 +109,7 @@ public class BattleSystemOnline : MonoBehaviour
 
                 if (player2CurrentHealth <= 0)
                 {
-                    EndCard();
+                    EndCard(gameSession.Player1ID);
                 }
             }
             else if (abilities.attackRules[gameSession.Player2Attack] == gameSession.Player1Attack)
@@ -124,16 +127,11 @@ public class BattleSystemOnline : MonoBehaviour
 
                 if (player1CurrentHealth <= 0)
                 {
-                    EndCard();
+                    EndCard(gameSession.Player2ID);
                 }
             }
             ResetAttacks();
         }
-    }
-
-    private void PlayAnimation()
-    {
-
     }
 
     private void ResetAttacks()
@@ -159,9 +157,20 @@ public class BattleSystemOnline : MonoBehaviour
         attackButtonsHUD.SetActive(false);
     }
 
-    private void EndCard()
+    private void EndCard(string winnerID)
     {
-        Debug.Log("End");
+        if (winnerID == FirebaseAuth.DefaultInstance.CurrentUser.UserId)
+        {
+            hudScript.ActivatePanel("You Won!");
+            PlayerData.data.WinStreak++;
+            PlayerData.data.Wins++;
+        }
+        else
+        {
+            hudScript.ActivatePanel("You Lost!");
+            PlayerData.data.WinStreak = 0;
+            PlayerData.data.Losses++;
+        }
     }
 
 
@@ -182,4 +191,6 @@ public class BattleSystemOnline : MonoBehaviour
             StartGame();
         }
     }
+
+
 }

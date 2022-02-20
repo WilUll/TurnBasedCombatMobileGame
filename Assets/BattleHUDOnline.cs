@@ -11,6 +11,9 @@ public class BattleHUDOnline : MonoBehaviour
     public TMP_Text player1Name;
     public TMP_Text player2Name;
 
+    public GameObject panel;
+    public TMP_Text panelText;
+
     public BattleSystemOnline battleSystem;
     public void UpdateHud()
     {
@@ -22,5 +25,11 @@ public class BattleHUDOnline : MonoBehaviour
 
         player1Name.text = BattleSystemOnline.gameSession.players[0].Name;
         player2Name.text = BattleSystemOnline.gameSession.players[1].Name;
+    }
+
+    public void ActivatePanel(string topText)
+    {
+        panel.SetActive(true);
+        panelText.text = topText;
     }
 }
