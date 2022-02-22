@@ -13,4 +13,9 @@ public class LoadNextScene : MonoBehaviour
     {
         SceneManager.LoadScene("OnlineBattle");
     }
+
+    public void LoadPreviousScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

@@ -36,12 +36,13 @@ public class EndPanel : MonoBehaviour
         if (PlayerData.data.WinStreak > 0)
         {
             xpToAdd = 50 * PlayerData.data.WinStreak;
-            xpAddText.text = "+ " + xpAddText.ToString() + " XP";
+            xpAddText.text = "+ " + xpToAdd + " XP";
             PlayerData.AddXP(xpToAdd);
         }
         else
         {
             xpToAdd = 25;
+            xpAddText.text = "+ " + xpToAdd + " XP";
             PlayerData.AddXP(xpToAdd);
         }
         SaveManager.Instance.SaveData(PlayerData.userPath, JsonUtility.ToJson(PlayerData.data));
