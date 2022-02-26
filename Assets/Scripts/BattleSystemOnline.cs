@@ -48,7 +48,23 @@ public class BattleSystemOnline : MonoBehaviour
         GetComponent<FirebaseOnline>().Subscribe(gameSession.gameID);
         if (gameSession.isFull)
         {
+            SetColors();
             StartGame();
+        }
+    }
+
+    private void SetColors()
+    {
+        if (gameSession.Player1ID == FirebaseAuth.DefaultInstance.CurrentUser.UserId)
+        {
+            Player1.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(PlayerData.data.ColorHUE, 0.85f, 0.85f);
+            Player2.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(gameSession.players[1].ColorHUE, 0.85f, 0.85f);
+
+        }
+        else
+        {
+            Player1.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(gameSession.players[0].ColorHUE, 0.85f, 0.85f);
+            Player2.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(PlayerData.data.ColorHUE, 0.85f, 0.85f);
         }
     }
 
