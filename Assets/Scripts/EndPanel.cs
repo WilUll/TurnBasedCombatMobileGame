@@ -27,10 +27,10 @@ public class EndPanel : MonoBehaviour
 
     IEnumerator Setup()
     {
-        yield return new WaitForSeconds(0.2f);
+        ExpBar.value = PlayerData.data.Exp;
+        yield return new WaitForSeconds(1f);
         levelText.text = PlayerData.data.Level.ToString();
         ExpBar.maxValue = (PlayerData.data.Level + 1) * 100;
-        ExpBar.value = PlayerData.data.Exp;
         //TODO: SLIDER MAX = Player level + 1 * 100;
         ExpText.text = ExpBar.value + " / " + ExpBar.maxValue;
         if (PlayerData.data.WinStreak > 0)
@@ -46,7 +46,6 @@ public class EndPanel : MonoBehaviour
             PlayerData.AddXP(xpToAdd);
         }
         SaveManager.Instance.SaveData(PlayerData.userPath, JsonUtility.ToJson(PlayerData.data));
-        StartCounting();
     }
 
     private void Update()
@@ -65,6 +64,7 @@ public class EndPanel : MonoBehaviour
             if (ExpBar.value == ExpBar.maxValue)
             {
                 ExpBar.value = 0;
+                levelText.text = PlayerData.data.Level.ToString();
                 ExpBar.maxValue = (PlayerData.data.Level + 1) * 100;
             }
         }

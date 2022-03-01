@@ -16,9 +16,4 @@ public class GameManager : MonoBehaviour
     {
         game = JsonUtility.FromJson<GameInfo>(gameInfo);
     }
-
-    public void RefreshGame(string newText)
-    {
-
-    }
 }

@@ -208,5 +208,28 @@ public class BattleSystemOnline : MonoBehaviour
         }
     }
 
+    public void RemoveGame()
+    {
+        if (gameSession.players.Count == 1)
+        {
+            SaveManager.Instance.RemoveGame("games/" + PlayerData.data.activeGameID);
+            Debug.Log("RemoveGame");
+        }
+        else
+        {
+            if (gameSession.Player1ID == FirebaseAuth.DefaultInstance.CurrentUser.UserId)
+            {
+                gameSession.players.RemoveAt(0);
+            }
+            else
+            {
+                gameSession.players.RemoveAt(1);
+            }
+            SaveGame();
+            PlayerData.data.activeGameID = "";
+            SaveManager.Instance.SaveData(PlayerData.userPath, JsonUtility.ToJson(PlayerData.data));
+        }
+    }
+
 
 }

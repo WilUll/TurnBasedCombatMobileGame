@@ -85,4 +85,13 @@ public class SaveManager : MonoBehaviour
     {
         return db.RootReference.Child(path).Push().Key;
     }
+
+    public void RemoveGame(string path)
+    {
+        db.RootReference.Child(path).RemoveValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.Exception != null)
+                Debug.LogWarning(task.Exception);
+        });
+    }
 }

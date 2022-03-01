@@ -19,10 +19,4 @@ public class XPbar : MonoBehaviour
         xpText.text = xpSlider.value + "/" + xpSlider.maxValue;
         levelText.text = PlayerData.data.Level.ToString();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
