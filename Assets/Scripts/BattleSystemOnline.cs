@@ -37,7 +37,7 @@ public class BattleSystemOnline : MonoBehaviour
         attackButtonsHUD.SetActive(false);
 
         SaveManager.Instance.LoadData("games/" + PlayerData.data.activeGameID, OnDataLoad);
-
+        Player1.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(PlayerData.data.ColorHUE, 0.85f, 0.85f);
     }
 
     private void OnDataLoad(string gameString)
@@ -63,8 +63,8 @@ public class BattleSystemOnline : MonoBehaviour
         }
         else
         {
-            Player1.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(gameSession.players[0].ColorHUE, 0.85f, 0.85f);
-            Player2.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(PlayerData.data.ColorHUE, 0.85f, 0.85f);
+            Player1.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(PlayerData.data.ColorHUE, 0.85f, 0.85f);
+            Player2.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(gameSession.players[0].ColorHUE, 0.85f, 0.85f);
         }
     }
 
