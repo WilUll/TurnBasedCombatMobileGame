@@ -11,7 +11,7 @@ public class AnimationBattleMode : MonoBehaviour
             Animator anim = GameObject.FindGameObjectWithTag("Opponent").GetComponent<Animator>();
 
             anim.SetTrigger("TakeDamage");
-            ServiceLocator.GetAudioProvider().PlayOneShot("damage");
+            ServiceLocator.GetAudioProvider().PlayOneShot("HitSound");
 
         }
         else
@@ -19,7 +19,7 @@ public class AnimationBattleMode : MonoBehaviour
             Animator anim = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 
             anim.SetTrigger("TakeDamage");
-            ServiceLocator.GetAudioProvider().PlayOneShot("damage");
+            ServiceLocator.GetAudioProvider().PlayOneShot("HitSound");
         }
 
     }

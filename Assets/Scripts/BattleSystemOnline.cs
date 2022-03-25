@@ -203,6 +203,7 @@ public class BattleSystemOnline : MonoBehaviour
         }
         if (gameSession.userIDTurn == FirebaseAuth.DefaultInstance.CurrentUser.UserId)
         {
+            SetColors();
             CheckForAttack();
             StartGame();
         }
