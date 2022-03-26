@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "ZY326PQLB3",
+    "m_SelectedDeviceId": "4bf405b5",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "4bf405b5",
+        "name": "com.WilliamUllholm.MobileGame",
+        "processId": 14687,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -36,6 +36,24 @@
             "deviceId": "ZY326PQLB3",
             "name": "com.motorola.launcher3",
             "processId": 2581,
+            "exited": false
+        },
+        {
+            "deviceId": "4bf405b5",
+            "name": "com.WilliamUllholm.MobileGame",
+            "processId": 13123,
+            "exited": false
+        },
+        {
+            "deviceId": "4bf405b5",
+            "name": "com.WilliamUllholm.MobileGame",
+            "processId": 14000,
+            "exited": false
+        },
+        {
+            "deviceId": "4bf405b5",
+            "name": "com.WilliamUllholm.MobileGame",
+            "processId": 14687,
             "exited": false
         }
     ],

@@ -40,7 +40,7 @@ public class FirebaseMatchmaking : MonoBehaviour
         string gameDataJson = JsonUtility.ToJson(gameToJoin);
         PlayerData.SaveData();
         SaveManager.Instance.SaveData("games/" + gameToJoin.gameID, gameDataJson);
-        SceneManager.LoadScene("OnlineTest");
+        SceneManager.LoadScene("OnlineBattle");
     }
 
     public void CreateGameSession()
@@ -62,6 +62,6 @@ public class FirebaseMatchmaking : MonoBehaviour
         string path = "games/" + key;
         PlayerData.SaveData();
         SaveManager.Instance.SaveData(path, gameData);
-        SceneManager.LoadScene("OnlineTest");
+        SceneManager.LoadScene("OnlineBattle");
     }
 }
